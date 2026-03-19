@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { graphqlEndpoint } from '../lib/api'
+
 export default function Dashboard(){
   const [memberTeams, setMemberTeams] = useState<any[]>([])
   const [ownedTeams, setOwnedTeams] = useState<any[]>([])
 
   useEffect(()=>{ load(); },[])
   async function load(){
-    const m = await fetch('/graphql',{ method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('tt_token')}, body: JSON.stringify({ query: `query{ myMemberTeams{ id name ownerId } }` }) });
+    const m = await fetch(graphqlEndpoint(),{ method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('tt_token')}, body: JSON.stringify({ query: `query{ myMemberTeams{ id name ownerId } }` }) });
     const mo = await m.json(); setMemberTeams(mo.data?.myMemberTeams||[]);
-    const o = await fetch('/graphql',{ method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('tt_token')}, body: JSON.stringify({ query: `query{ myOwnedTeams{ id name ownerId } }` }) });
+    const o = await fetch(graphqlEndpoint(),{ method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('tt_token')}, body: JSON.stringify({ query: `query{ myOwnedTeams{ id name ownerId } }` }) });
     const oo = await o.json(); setOwnedTeams(oo.data?.myOwnedTeams||[]);
   }
 
