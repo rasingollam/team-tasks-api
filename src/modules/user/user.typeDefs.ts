@@ -19,5 +19,6 @@ export const userTypeDefs = gql`
   type Mutation {
     register(email: String!, password: String!, name: String): User
     login(email: String!, password: String!): AuthPayload
+    deleteUser(userId: String!): Boolean
   }
 `;

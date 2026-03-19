@@ -1,4 +1,4 @@
-import { createUser, findUserById, findUserByEmail } from './user.service';
+import { createUser, findUserById, findUserByEmail, deleteUserById } from './user.service';
 import { verifyPassword } from '../../auth/hash';
 import { signToken } from '../../auth/jwt';
 
@@ -23,6 +23,13 @@ export const userResolvers = {
       if (!ok) throw new Error('Invalid credentials');
       const token = signToken({ userId: user.id, sub: user.id });
       return { token, user };
+    },
+    deleteUser: async (_: any, args: any, ctx: any) => {
+      const requester = ctx.userId;
+      if (!requester) throw new Error('Unauthorized');
+      // allow users to delete their own account only
+      if (requester !== args.userId) throw new Error('Forbidden');
+      return deleteUserById(args.userId);
     },
   },
 };
