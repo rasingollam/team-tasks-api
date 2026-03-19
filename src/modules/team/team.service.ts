@@ -32,6 +32,14 @@ export async function removeTeamMember(data: { teamId: string; userId: string })
   return result.count > 0;
 }
 
+export async function listTeamMembers(teamId: string) {
+  const memberships = await prisma.teamMember.findMany({
+    where: { teamId },
+    include: { user: true },
+  });
+  return memberships.map((m) => m.user);
+}
+
 export async function findTeamById(id: string) {
   return prisma.team.findUnique({ where: { id } });
 }

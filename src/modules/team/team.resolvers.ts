@@ -1,9 +1,22 @@
-import { createTeam, addTeamMember, addTeamMembers, removeTeamMember, findTeamById, updateTeamById, deleteTeamById } from './team.service';
+import { createTeam, addTeamMember, addTeamMembers, removeTeamMember, findTeamById, updateTeamById, deleteTeamById, listTeamMembers } from './team.service';
+import prisma from '../../prisma/client';
 
 export const teamResolvers = {
   Query: {
     team: async (_: any, args: any, ctx: any) => {
       return findTeamById(args.id);
+    },
+    teamMembers: async (_: any, args: any, ctx: any) => {
+      const userId = ctx.userId;
+      if (!userId) throw new Error('Unauthorized');
+      const team = await findTeamById(args.teamId);
+      if (!team) throw new Error('Not found');
+      // allow owner or members to view members
+      if (team.ownerId !== userId) {
+        const isMember = await prisma.teamMember.findFirst({ where: { teamId: args.teamId, userId } });
+        if (!isMember) throw new Error('Forbidden');
+      }
+      return listTeamMembers(args.teamId);
     },
   },
   Mutation: {
