@@ -14,6 +14,10 @@ export async function findUserByEmail(email: string) {
   return prisma.user.findUnique({ where: { email } });
 }
 
+export async function listUsers() {
+  return prisma.user.findMany({ select: { id: true, email: true, name: true } });
+}
+
 export async function deleteUserById(userId: string) {
   return prisma.$transaction(async (tx) => {
     await tx.task.updateMany({ where: { assignedTo: userId }, data: { assignedTo: null } });

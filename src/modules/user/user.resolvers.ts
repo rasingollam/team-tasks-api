@@ -1,4 +1,4 @@
-import { createUser, findUserById, findUserByEmail, deleteUserById } from './user.service';
+import { createUser, findUserById, findUserByEmail, deleteUserById, listUsers } from './user.service';
 import { verifyPassword } from '../../auth/hash';
 import { signToken } from '../../auth/jwt';
 
@@ -7,6 +7,10 @@ export const userResolvers = {
     me: async (_: any, __: any, ctx: any) => {
       if (!ctx.userId) return null;
       return findUserById(ctx.userId);
+    },
+    users: async (_: any, __: any, ctx: any) => {
+      if (!ctx.userId) throw new Error('Unauthorized');
+      return listUsers();
     },
   },
   Mutation: {
