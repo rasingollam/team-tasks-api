@@ -1,4 +1,4 @@
-import { createTeam, addTeamMember, addTeamMembers, removeTeamMember, findTeamById, updateTeamById, deleteTeamById, listTeamMembers } from './team.service';
+import { createTeam, addTeamMember, addTeamMembers, removeTeamMember, findTeamById, updateTeamById, deleteTeamById, listTeamMembers, findTeamsByOwner, findTeamsForMember } from './team.service';
 import prisma from '../../prisma/client';
 
 export const teamResolvers = {
@@ -17,6 +17,22 @@ export const teamResolvers = {
         if (!isMember) throw new Error('Forbidden');
       }
       return listTeamMembers(args.teamId);
+    },
+    myOwnedTeams: async (_: any, _args: any, ctx: any) => {
+      const userId = ctx.userId;
+      if (!userId) throw new Error('Unauthorized');
+      return findTeamsByOwner(userId);
+    },
+    myMemberTeams: async (_: any, _args: any, ctx: any) => {
+      const userId = ctx.userId;
+      if (!userId) throw new Error('Unauthorized');
+      return findTeamsForMember(userId);
+    },
+    userMemberTeams: async (_: any, args: any, ctx: any) => {
+      const requester = ctx.userId;
+      if (!requester) throw new Error('Unauthorized');
+      // allow requester to fetch other users' teams; restrict if needed
+      return findTeamsForMember(args.userId);
     },
   },
   Mutation: {

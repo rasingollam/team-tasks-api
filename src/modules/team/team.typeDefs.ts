@@ -16,6 +16,9 @@ export const teamTypeDefs = gql`
   extend type Query {
     team(id: String!): Team
     teamMembers(teamId: String!): [User!]!
+    myOwnedTeams: [Team!]!
+    myMemberTeams: [Team!]!
+    userMemberTeams(userId: String!): [Team!]!
   }
 
   extend type Mutation {

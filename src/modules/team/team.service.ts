@@ -40,6 +40,15 @@ export async function listTeamMembers(teamId: string) {
   return memberships.map((m) => m.user);
 }
 
+export async function findTeamsByOwner(ownerId: string) {
+  return prisma.team.findMany({ where: { ownerId } });
+}
+
+export async function findTeamsForMember(userId: string) {
+  const memberships = await prisma.teamMember.findMany({ where: { userId }, include: { team: true } });
+  return memberships.map((m) => m.team);
+}
+
 export async function findTeamById(id: string) {
   return prisma.team.findUnique({ where: { id } });
 }
