@@ -1,10 +1,8 @@
+import 'dotenv/config';
 import express from 'express';
-import dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from './graphql/schema';
 import { createContext } from './context';
-
-dotenv.config();
 
 const app = express();
 
