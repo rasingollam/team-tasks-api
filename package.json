@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev:ui": "cd ui && npm run dev",
+    "build:ui": "cd ui && npm run build",
+    "preview:ui": "cd ui && npm run preview",
     "build": "tsc",
     "start": "node dist/index.js",
     "prisma:generate": "prisma generate",

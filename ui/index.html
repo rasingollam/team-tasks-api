@@ -1,38 +1,12 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Team Tasks UI</title>
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header>
-      <h1>Team Tasks</h1>
-      <div id="auth">
-        <input id="token" placeholder="JWT token" />
-        <button id="saveToken">Save</button>
-        <button id="clearToken">Clear</button>
-      </div>
-    </header>
-    <main>
-      <nav id="menu">
-        <button data-action="register">Register</button>
-        <button data-action="login">Login</button>
-        <button data-action="teams">Teams</button>
-        <button data-action="members">Members</button>
-        <button data-action="tasks">Tasks</button>
-        <button data-action="me">Me / Account</button>
-      </nav>
-
-      <section id="work">
-        <div id="forms"></div>
-        <div id="result"><pre id="output">Responses will appear here</pre></div>
-      </section>
-    </main>
-    <footer>Simple SPA for the Team-Tasks API</footer>
-  </div>
-  <script src="/app.js"></script>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Tasks UI</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

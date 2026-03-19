@@ -1,5 +1,5 @@
 node_modules
 /generated/prisma
 package-lock.json
-project.md
 .env
+dist
