@@ -24,5 +24,8 @@ export const taskTypeDefs = gql`
     createTask(teamId: String!, title: String!, description: String): Task
     assignTask(taskId: String!, userId: String!): Task
     updateTaskStatus(taskId: String!, status: TaskStatus!): Task
+    updateTask(taskId: String!, title: String, description: String, status: TaskStatus, assignedTo: String): Task
+    removeTaskAssignment(taskId: String!): Task
+    deleteTask(taskId: String!): Boolean
   }
 `;
