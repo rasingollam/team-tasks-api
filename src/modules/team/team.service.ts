@@ -11,3 +11,11 @@ export async function addTeamMember(data: { teamId: string; userId: string }) {
 export async function findTeamById(id: string) {
   return prisma.team.findUnique({ where: { id } });
 }
+
+export async function updateTeamById(id: string, data: { name?: string }) {
+  return prisma.team.update({ where: { id }, data });
+}
+
+export async function deleteTeamById(id: string) {
+  return prisma.team.delete({ where: { id } });
+}

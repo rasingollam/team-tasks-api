@@ -20,5 +20,7 @@ export const teamTypeDefs = gql`
   extend type Mutation {
     createTeam(name: String!): Team
     addMember(teamId: String!, userId: String!): TeamMember
+    updateTeam(id: String!, name: String!): Team
+    deleteTeam(id: String!): Boolean
   }
 `;
