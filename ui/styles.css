@@ -1,0 +1,19 @@
+*{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+body{margin:0;background:#f5f7fb;color:#0f1724}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:linear-gradient(90deg,#2563eb,#7c3aed);color:white}
+header h1{margin:0;font-size:18px}
+#auth input{width:360px;max-width:45vw;padding:8px;border-radius:6px;border:none;margin-right:8px}
+#auth button{padding:8px 10px;border-radius:6px;border:none;margin-right:6px;cursor:pointer}
+main{display:flex;gap:16px;padding:20px}
+#menu{width:160px;display:flex;flex-direction:column;gap:8px}
+#menu button{padding:10px;border-radius:8px;border:1px solid #e6eefb;background:white;cursor:pointer}
+#work{flex:1;display:flex;gap:16px}
+#forms{flex:1;background:white;padding:16px;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,36,0.06);max-height:70vh;overflow:auto}
+.form-card{border:1px solid #eef2ff;padding:12px;border-radius:8px;margin-bottom:12px}
+.form-card h3{margin:0 0 8px 0}
+.form-row{display:flex;gap:8px;margin-bottom:8px}
+.form-row input,.form-row textarea, .form-row select{flex:1;padding:8px;border:1px solid #e6eefb;border-radius:6px}
+.form-row button{padding:8px 12px;border-radius:6px;border:none;background:#2563eb;color:white;cursor:pointer}
+#result{width:380px;background:#0b1220;color:#dbeafe;padding:12px;border-radius:8px;overflow:auto}
+pre{white-space:pre-wrap}
+footer{padding:12px 20px;text-align:center;color:#94a3b8}
